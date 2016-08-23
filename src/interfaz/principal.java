@@ -174,7 +174,7 @@ public class principal extends javax.swing.JFrame {
     }//GEN-LAST:event_cmdLlenarManualActionPerformed
 
     private void cmdMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdMostrarActionPerformed
-for (int i=0 ; 1<v.length ; i++){
+for (int i=0 ; i<v.length ; i++){
     txtResultado.append(v[i]+"\n");
     
 }
@@ -190,13 +190,14 @@ for (int i=0 ; 1<v.length ; i++){
 
     private void cmdLlenarAutomaticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlenarAutomaticoActionPerformed
  double n;
-        for (int i = 0; 1 < v.length; i++) {
+        for (int i = 0; i < v.length; i++) {
             
         n=(int)(Math.random()*50 + 1);  
         v[i]=n;
         }
         
         JOptionPane.showMessageDialog(this,"Vector llenado correctamente");
+        
 // TODO add your handling code here:
     }//GEN-LAST:event_cmdLlenarAutomaticoActionPerformed
 
