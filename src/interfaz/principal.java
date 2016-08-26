@@ -187,6 +187,7 @@ public class principal extends javax.swing.JFrame {
     private void cmdLlenarManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlenarManualActionPerformed
         double n;
         int sw, res;
+        boolean aux=true;
         for (int i = 0; i < v.length; i++) {
             do {
                 sw = 1;
@@ -201,6 +202,7 @@ public class principal extends javax.swing.JFrame {
                     if (res == 0) {
                         sw = 1;
                         i = v.length;
+                        aux=false;
                     } else {
                         sw = 0;
                     }
@@ -211,7 +213,7 @@ public class principal extends javax.swing.JFrame {
         cmdCrear.setEnabled(false);
         cmdLlenarManual.setEnabled(false);
         cmdLlenarAutomatico.setEnabled(false);
-        cmdMostrar.setEnabled(true);
+        cmdMostrar.setEnabled(aux);
         cmdBorrar.setEnabled(true);
     }//GEN-LAST:event_cmdLlenarManualActionPerformed
 
@@ -228,8 +230,8 @@ public class principal extends javax.swing.JFrame {
     }//GEN-LAST:event_cmdMostrarActionPerformed
 
     private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
-        txtLongitud.setText(" ");
-        txtResultado.setText(" ");
+        txtLongitud.setText("");
+        txtResultado.setText("");
         v = null;
         txtLongitud.requestFocusInWindow();
         cmdCrear.setEnabled(true);
