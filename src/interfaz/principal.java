@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package interfaz;
 
 import javax.swing.JOptionPane;
@@ -18,6 +17,7 @@ public class principal extends javax.swing.JFrame {
      * Creates new form principal
      */
     double v[];
+
     public principal() {
         initComponents();
         cmdCrear.setEnabled(true);
@@ -25,7 +25,7 @@ public class principal extends javax.swing.JFrame {
         cmdLlenarAutomatico.setEnabled(false);
         cmdMostrar.setEnabled(false);
         cmdBorrar.setEnabled(true);
-        
+
     }
 
     /**
@@ -150,51 +150,58 @@ public class principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmdCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCrearActionPerformed
-     int longitud;
-        if(txtLongitud.getText().trim().isEmpty()){
-      JOptionPane.showMessageDialog(this,"Digite la longitud del vector","Error",JOptionPane.ERROR_MESSAGE);
-  }   
-      else if(Integer.parseInt(txtLongitud.getText().trim())==0){
-      JOptionPane.showMessageDialog(this,"La longitud no puede ser 0","Error",JOptionPane.ERROR_MESSAGE); 
-      txtLongitud.requestFocusInWindow();
-      txtLongitud.selectAll();
-   }
-      else{
-          longitud=Integer.parseInt(txtLongitud.getText());
-          v=new double[longitud];
-          JOptionPane.showMessageDialog(this,"El vector ha sido creado exitoxamente");
- 
-            
-        cmdLlenarManual.setEnabled(true);
-        cmdLlenarAutomatico.setEnabled(true);
-        cmdMostrar.setEnabled(false);
-        cmdCrear.setEnabled(false);
-        cmdBorrar.setEnabled(true);  
-        txtLongitud.setEditable(false);
-        
-      }
-  
-  
+        int longitud;
+        if (txtLongitud.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Digite la longitud del vector", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (Integer.parseInt(txtLongitud.getText().trim()) == 0) {
+            JOptionPane.showMessageDialog(this, "La longitud no puede ser 0", "Error", JOptionPane.ERROR_MESSAGE);
+            txtLongitud.requestFocusInWindow();
+            txtLongitud.selectAll();
+        } else {
+            longitud = Integer.parseInt(txtLongitud.getText());
+            v = new double[longitud];
+            JOptionPane.showMessageDialog(this, "El vector ha sido creado exitoxamente");
+
+            cmdLlenarManual.setEnabled(true);
+            cmdLlenarAutomatico.setEnabled(true);
+            cmdMostrar.setEnabled(false);
+            cmdCrear.setEnabled(false);
+            cmdBorrar.setEnabled(true);
+            txtLongitud.setEditable(false);
+
+        }
+
+
     }//GEN-LAST:event_cmdCrearActionPerformed
 
     private void txtLongitudKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLongitudKeyTyped
-     char c=evt.getKeyChar(); 
-       
-          if(!Character.isDigit(c)) { 
-              getToolkit().beep();    
-              evt.consume(); 
-          }
-       
+        char c = evt.getKeyChar();
+
+        if (!Character.isDigit(c)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+
     }//GEN-LAST:event_txtLongitudKeyTyped
 
     private void cmdLlenarManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlenarManualActionPerformed
-  double n;
-  
-  for (int i=0; i<v.length; i++){
-  n=Double.parseDouble(JOptionPane.showInputDialog(this,"Digite el elemento número "+(i+1)));
-  v[i]=n;
-   
-    }
+        double n;
+        int sw;
+        for (int i = 0; i < v.length; i++) {
+            do {
+                sw = 1;
+                try {
+                    n = Double.parseDouble(JOptionPane.showInputDialog(this, "Digite el elemento número " + (i + 1)));
+                    v[i] = n;
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(this, "Digote un número valido");
+                    sw = 0;
+                } catch (NullPointerException e) {
+                    JOptionPane.showMessageDialog(this, "No puedes abandonar");
+                    sw=0;
+                }
+            } while (sw==0);
+        }
         cmdCrear.setEnabled(false);
         cmdLlenarManual.setEnabled(false);
         cmdLlenarAutomatico.setEnabled(false);
@@ -203,10 +210,10 @@ public class principal extends javax.swing.JFrame {
     }//GEN-LAST:event_cmdLlenarManualActionPerformed
 
     private void cmdMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdMostrarActionPerformed
-for (int i=0 ; i<v.length ; i++){
-    txtResultado.append(v[i]+"\n");
-    
-}
+        for (int i = 0; i < v.length; i++) {
+            txtResultado.append(v[i] + "\n");
+
+        }
         cmdCrear.setEnabled(false);
         cmdLlenarManual.setEnabled(false);
         cmdLlenarAutomatico.setEnabled(false);
@@ -215,34 +222,34 @@ for (int i=0 ; i<v.length ; i++){
     }//GEN-LAST:event_cmdMostrarActionPerformed
 
     private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
-    txtLongitud.setText(" ");
-    txtResultado.setText(" ");
-    v=null;
-    txtLongitud.requestFocusInWindow();
+        txtLongitud.setText(" ");
+        txtResultado.setText(" ");
+        v = null;
+        txtLongitud.requestFocusInWindow();
         cmdCrear.setEnabled(true);
         cmdLlenarManual.setEnabled(false);
         cmdLlenarAutomatico.setEnabled(false);
         cmdMostrar.setEnabled(false);
         cmdBorrar.setEnabled(true);
         txtLongitud.setEditable(true);
-        
+
     }//GEN-LAST:event_cmdBorrarActionPerformed
 
     private void cmdLlenarAutomaticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlenarAutomaticoActionPerformed
-double n;
+        double n;
         for (int i = 0; i < v.length; i++) {
-            
-        n=(int)(Math.random()*50 + 1);  
-        v[i]=n;
+
+            n = (int) (Math.random() * 50 + 1);
+            v[i] = n;
         }
 
-        JOptionPane.showMessageDialog(this,"Vector llenado correctamente");
-        
+        JOptionPane.showMessageDialog(this, "Vector llenado correctamente");
+
         cmdCrear.setEnabled(false);
         cmdLlenarManual.setEnabled(false);
         cmdLlenarAutomatico.setEnabled(false);
         cmdMostrar.setEnabled(true);
-        cmdBorrar.setEnabled(true);  
+        cmdBorrar.setEnabled(true);
 // TODO add your handling code here:
     }//GEN-LAST:event_cmdLlenarAutomaticoActionPerformed
 
