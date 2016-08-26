@@ -20,6 +20,12 @@ public class principal extends javax.swing.JFrame {
     double v[];
     public principal() {
         initComponents();
+        cmdCrear.setEnabled(true);
+        cmdLlenarManual.setEnabled(false);
+        cmdLlenarAutomatico.setEnabled(false);
+        cmdMostrar.setEnabled(false);
+        cmdBorrar.setEnabled(true);
+        
     }
 
     /**
@@ -47,7 +53,6 @@ public class principal extends javax.swing.JFrame {
         txtResultado = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -127,9 +132,21 @@ public class principal extends javax.swing.JFrame {
 
         jPanel4.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 220, 190));
 
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 530, 400));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 46, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
+        );
 
-        pack();
+        setSize(new java.awt.Dimension(632, 460));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmdCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCrearActionPerformed
@@ -147,7 +164,14 @@ public class principal extends javax.swing.JFrame {
           v=new double[longitud];
           JOptionPane.showMessageDialog(this,"El vector ha sido creado exitoxamente");
  
-          
+            
+        cmdLlenarManual.setEnabled(true);
+        cmdLlenarAutomatico.setEnabled(true);
+        cmdMostrar.setEnabled(false);
+        cmdCrear.setEnabled(false);
+        cmdBorrar.setEnabled(true);  
+        txtLongitud.setEditable(false);
+        
       }
   
   
@@ -170,7 +194,12 @@ public class principal extends javax.swing.JFrame {
   n=Double.parseDouble(JOptionPane.showInputDialog(this,"Digite el elemento número "+(i+1)));
   v[i]=n;
    
-    }    // TODO add your handling code here:
+    }
+        cmdCrear.setEnabled(false);
+        cmdLlenarManual.setEnabled(false);
+        cmdLlenarAutomatico.setEnabled(false);
+        cmdMostrar.setEnabled(true);
+        cmdBorrar.setEnabled(true);
     }//GEN-LAST:event_cmdLlenarManualActionPerformed
 
     private void cmdMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdMostrarActionPerformed
@@ -178,6 +207,11 @@ for (int i=0 ; i<v.length ; i++){
     txtResultado.append(v[i]+"\n");
     
 }
+        cmdCrear.setEnabled(false);
+        cmdLlenarManual.setEnabled(false);
+        cmdLlenarAutomatico.setEnabled(false);
+        cmdMostrar.setEnabled(false);
+        cmdBorrar.setEnabled(true);
     }//GEN-LAST:event_cmdMostrarActionPerformed
 
     private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
@@ -185,19 +219,30 @@ for (int i=0 ; i<v.length ; i++){
     txtResultado.setText(" ");
     v=null;
     txtLongitud.requestFocusInWindow();
+        cmdCrear.setEnabled(true);
+        cmdLlenarManual.setEnabled(false);
+        cmdLlenarAutomatico.setEnabled(false);
+        cmdMostrar.setEnabled(false);
+        cmdBorrar.setEnabled(true);
+        txtLongitud.setEditable(true);
         
     }//GEN-LAST:event_cmdBorrarActionPerformed
 
     private void cmdLlenarAutomaticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlenarAutomaticoActionPerformed
- double n;
+double n;
         for (int i = 0; i < v.length; i++) {
             
         n=(int)(Math.random()*50 + 1);  
         v[i]=n;
         }
-        
+
         JOptionPane.showMessageDialog(this,"Vector llenado correctamente");
         
+        cmdCrear.setEnabled(false);
+        cmdLlenarManual.setEnabled(false);
+        cmdLlenarAutomatico.setEnabled(false);
+        cmdMostrar.setEnabled(true);
+        cmdBorrar.setEnabled(true);  
 // TODO add your handling code here:
     }//GEN-LAST:event_cmdLlenarAutomaticoActionPerformed
 
